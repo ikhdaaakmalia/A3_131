@@ -13,7 +13,7 @@ data class MerkDetailResponse(
 data class MerkResponse(
     val status: Boolean,
     val message: String,
-    val dataMerl: List<Merk>
+    val dataMerk: List<Merk>
 )
 
 @Serializable
