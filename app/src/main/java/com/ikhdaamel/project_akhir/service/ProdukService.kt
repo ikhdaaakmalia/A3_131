@@ -1,5 +1,8 @@
 package com.ikhdaamel.project_akhir.service
 
+import com.ikhdaamel.project_akhir.model.KategoriResponse
+import com.ikhdaamel.project_akhir.model.MerkResponse
+import com.ikhdaamel.project_akhir.model.PemasokResponse
 import com.ikhdaamel.project_akhir.model.Produk
 import com.ikhdaamel.project_akhir.model.ProdukDetailResponse
 import com.ikhdaamel.project_akhir.model.ProdukResponse
@@ -27,8 +30,24 @@ interface ProdukService {
     suspend fun insertProduk(@Body produk: Produk)
 
     @PUT("{idProduk}")
-    suspend fun updateProduk(@Path("idProduk")idProduk: String, @Body produk: Produk)
+    suspend fun updateProduk(@Path("idProduk")idProduk: String,
+                             @Body produk: Produk)
 
     @DELETE("{idProduk}")
     suspend fun deleteProduk(@Path("idProduk")idProduk: String): Response<Void>
+
+    @GET("Kategori")
+    suspend fun getKategori(): KategoriResponse
+
+    @POST("Kategori/{idKategori}/Produk")
+    suspend fun insertProdukInKategori(
+        @Path("idKategori") idKategori: String,
+        @Body produk: Produk
+    )
+
+    @GET("Pemasok")
+    suspend fun getPemasok(): PemasokResponse
+
+    @GET("Merk")
+    suspend fun getMerk(): MerkResponse
 }
