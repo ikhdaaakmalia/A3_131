@@ -17,11 +17,11 @@ interface ProdukService {
         "Accept:application/json",
         "Content-Type:application/json",
     )
-    @GET(".")                                                               //ganti jadi titik krn disesuaikan utk endpoint di postman
-    suspend fun getProduk(): ProdukResponse                            //diganti ngikutin yg terbaru
+    @GET(".")                                                                                       //ganti jadi titik krn disesuaikan utk endpoint di postman
+    suspend fun getProduk(): ProdukResponse                                                         //diganti ngikutin yg terbaru
 
-    @GET("{idProduk}")                                                                               //endpoint
-    suspend fun getProdukById(@Path("idProduk")idProduk:String): ProdukDetailResponse                //jd path karena merujuk ke alamat url
+    @GET("{idProduk}")                                                                              //endpoint
+    suspend fun getProdukById(@Path("idProduk")idProduk:String): ProdukDetailResponse               //jd path karena merujuk ke alamat url
 
     @POST("store")
     suspend fun insertProduk(@Body produk: Produk)

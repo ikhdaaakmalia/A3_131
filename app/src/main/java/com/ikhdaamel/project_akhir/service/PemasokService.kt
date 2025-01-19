@@ -17,11 +17,11 @@ interface PemasokService {
         "Accept:application/json",
         "Content-Type:application/json",
     )
-    @GET(".")                                                               //ganti jadi titik krn disesuaikan utk endpoint di postman
-    suspend fun getPemasok(): PemasokResponse                            //diganti ngikutin yg terbaru
+    @GET(".")                                                                                       //ganti jadi titik krn disesuaikan utk endpoint di postman
+    suspend fun getPemasok(): PemasokResponse                                                       //diganti ngikutin yg terbaru
 
-    @GET("{idPemasok}")                                                                               //endpoint
-    suspend fun getPemasokById(@Path("idPemasok")idPemasok:String): PemasokDetailResponse                //jd path karena merujuk ke alamat url
+    @GET("{idPemasok}")                                                                             //endpoint
+    suspend fun getPemasokById(@Path("idPemasok")idPemasok:String): PemasokDetailResponse           //jd path karena merujuk ke alamat url
 
     @POST("store")
     suspend fun insertPemasok(@Body pemasok: Pemasok)
