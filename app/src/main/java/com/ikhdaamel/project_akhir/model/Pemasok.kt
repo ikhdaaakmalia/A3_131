@@ -21,5 +21,5 @@ data class Pemasok(
     val idPemasok: String,
     val namaPemasok: String,
     val alamatPemasok: String,
-    val teleponPemasok: String
+    val telpPemasok: String
 )
