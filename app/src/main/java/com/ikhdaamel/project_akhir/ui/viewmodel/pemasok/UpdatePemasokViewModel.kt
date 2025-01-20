@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikhdaamel.project_akhir.repository.repository.PemasokRepository
-import com.ikhdaamel.project_akhir.ui.view.DestinasiUpdatePemasok
+import com.ikhdaamel.project_akhir.ui.view.pemasok.DestinasiUpdatePemasok
 import kotlinx.coroutines.launch
 
 class UpdatePemasokViewModel(

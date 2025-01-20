@@ -43,7 +43,7 @@ fun InsertKategoriUiEvent.toKategori() : Kategori = Kategori(
     deskKategori = deskKategori
 )
 
-fun Kategori.UiStateKategori(): InsertKategoriUiState = InsertKategoriUiState(
+fun Kategori.toUiStateKategori(): InsertKategoriUiState = InsertKategoriUiState(
     insertKategoriUiEvent = toInsertKategoriUiEvent()
 )
 

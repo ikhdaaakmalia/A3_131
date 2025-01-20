@@ -1,4 +1,4 @@
-package com.ikhdaamel.project_akhir.ui.view
+package com.ikhdaamel.project_akhir.ui.view.pemasok
 
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 
