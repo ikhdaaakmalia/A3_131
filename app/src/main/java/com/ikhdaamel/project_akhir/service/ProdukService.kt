@@ -36,18 +36,18 @@ interface ProdukService {
     @DELETE("{idProduk}")
     suspend fun deleteProduk(@Path("idProduk")idProduk: String): Response<Void>
 
-    @GET("Kategori")
+    @GET("kategori")
     suspend fun getKategori(): KategoriResponse
 
-    @POST("Kategori/{idKategori}/Produk")
+    @POST("kategori/{idKategori}/produk")
     suspend fun insertProdukInKategori(
         @Path("idKategori") idKategori: String,
         @Body produk: Produk
     )
 
-    @GET("Pemasok")
+    @GET("pemasok")
     suspend fun getPemasok(): PemasokResponse
 
-    @GET("Merk")
+    @GET("merk")
     suspend fun getMerk(): MerkResponse
 }
