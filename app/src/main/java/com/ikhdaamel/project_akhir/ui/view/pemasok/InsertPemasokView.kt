@@ -4,27 +4,111 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
+import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
+import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.InsertPemasokUiEvent
+import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.InsertPemasokUiState
+import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.InsertPemasokViewModel
+import kotlinx.coroutines.launch
+
+object DestinasiInsertPemasok: DestinasiNavigasi {
+    override val route = "input_pemasok"
+    override val titleRes = "INSERT PEMASOK"
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun InputProdukView(
+    navigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: InsertPemasokViewModel = viewModel(factory = PenyediaViewModel.Factory)
+){
+    val coroutineScope = rememberCoroutineScope()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    Scaffold (
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            CustomeTopAppBar(
+                title = DestinasiInsertPemasok.titleRes,
+                canNavigateBack = true,
+                scrollBehavior = scrollBehavior,
+                navigateUp = navigateBack
+            )
+        }
+    ){ innerpadding ->
+        InputPemasokBody(
+            insertPemasokUiState = viewModel.pemasokUiState,
+            onPemasokValueChange = viewModel::updateInsertPemasokState,
+            onSaveClick = {
+                coroutineScope.launch {
+                    viewModel.insertPemasok()
+                    navigateBack()
+                }
+            },
+            modifier = Modifier
+                .padding(innerpadding)
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun InputPemasokBody(
+    insertPemasokUiState: InsertPemasokUiState,
+    onPemasokValueChange:(InsertPemasokUiEvent) -> Unit,
+    onSaveClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    Column(
+        verticalArrangement = Arrangement.spacedBy(18.dp),
+        modifier = modifier.padding(12.dp)
+    ) {
+        FormInputPemasok(
+            insertPemasokUiEvent = insertPemasokUiState.insertPemasokUiEvent,
+            onValueChange = onPemasokValueChange,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onSaveClick,
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "SIMPAN")
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
