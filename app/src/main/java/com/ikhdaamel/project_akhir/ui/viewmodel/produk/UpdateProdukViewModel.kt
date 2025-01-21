@@ -10,7 +10,7 @@ import com.ikhdaamel.project_akhir.repository.repository.ProdukRepository
 import com.ikhdaamel.project_akhir.ui.view.produk.DestinasiUpdateProduk
 import kotlinx.coroutines.launch
 
-class UpdateProdukkViewModel(
+class UpdateProdukViewModel(
     savedStateHandle: SavedStateHandle,
     private val produkRepository: ProdukRepository
 ): ViewModel(){
