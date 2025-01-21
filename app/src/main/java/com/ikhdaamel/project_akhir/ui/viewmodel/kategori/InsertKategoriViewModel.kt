@@ -10,15 +10,15 @@ import com.ikhdaamel.project_akhir.repository.repository.KategoriRepository
 import kotlinx.coroutines.launch
 
 class InsertKategoriViewModel (private val kategoriRepository: KategoriRepository) : ViewModel(){
-    var kategorikUiState by mutableStateOf(InsertKategoriUiState())
+    var kategoriUiState by mutableStateOf(InsertKategoriUiState())
         private set
     fun updateInsertKategoriState(insertKategoriUiEvent: InsertKategoriUiEvent){
-        kategorikUiState = InsertKategoriUiState(insertKategoriUiEvent = insertKategoriUiEvent)
+        kategoriUiState = InsertKategoriUiState(insertKategoriUiEvent = insertKategoriUiEvent)
     }
     suspend fun insertKategori(){
         viewModelScope.launch{
             try {
-                kategoriRepository.insertKategori(kategorikUiState.insertKategoriUiEvent.toKategori())
+                kategoriRepository.insertKategori(kategoriUiState.insertKategoriUiEvent.toKategori())
             } catch (e: Exception){
                 e.printStackTrace()
             }
