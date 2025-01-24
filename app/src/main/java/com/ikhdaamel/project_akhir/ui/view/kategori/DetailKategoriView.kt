@@ -28,6 +28,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ikhdaamel.project_akhir.model.Kategori
 import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
+import com.ikhdaamel.project_akhir.ui.view.pemasok.OnError
+import com.ikhdaamel.project_akhir.ui.view.pemasok.OnLoading
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.DetailKategoriUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.DetailKategoriViewModel

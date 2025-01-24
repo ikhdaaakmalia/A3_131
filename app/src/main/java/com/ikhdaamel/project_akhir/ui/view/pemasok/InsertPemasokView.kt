@@ -49,7 +49,7 @@ object DestinasiInsertPemasok: DestinasiNavigasi {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputProdukView(
+fun InputPemasokView(
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: InsertPemasokViewModel = viewModel(factory = PenyediaViewModel.Factory)
