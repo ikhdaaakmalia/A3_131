@@ -110,10 +110,10 @@ fun InputPemasokBody(
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun FormInputPemasok(
-    insertPemasokUiEvent: InsertPemasokUiEvent = InsertPemasokUiEvent(),
+    insertPemasokUiEvent: InsertPemasokUiEvent,
     modifier: Modifier = Modifier,
     onValueChange: (InsertPemasokUiEvent) -> Unit ={},
     enabled: Boolean = true

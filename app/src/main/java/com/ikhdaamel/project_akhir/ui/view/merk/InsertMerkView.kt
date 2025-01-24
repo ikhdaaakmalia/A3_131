@@ -110,10 +110,10 @@ fun InputMerkBody(
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun FormInputMerk(
-    insertMerkUiEvent: InsertMerkUiEvent = InsertMerkUiEvent(),
+    insertMerkUiEvent: InsertMerkUiEvent,
     modifier: Modifier = Modifier,
     onValueChange: (InsertMerkUiEvent) -> Unit ={},
     enabled: Boolean = true

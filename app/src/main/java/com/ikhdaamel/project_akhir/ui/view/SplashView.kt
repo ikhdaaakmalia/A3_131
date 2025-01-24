@@ -49,7 +49,7 @@ fun SplashView(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "A3 APLIKASI MANAJEMEN",
+            text = "APLIKASI MANAJEMEN",
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
         )
@@ -59,6 +59,10 @@ fun SplashView(
             ),
             contentDescription = "",
             modifier = Modifier.size(350.dp)
+        )
+        Text(
+            text = "Pilih Untuk Menambah",
+            fontSize = 15.sp
         )
         Row {
             Button(

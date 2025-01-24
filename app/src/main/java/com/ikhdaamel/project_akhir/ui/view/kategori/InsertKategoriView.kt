@@ -110,10 +110,10 @@ fun InputKategoriBody(
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun FormInputKategori(
-    insertKategoriUiEvent: InsertKategoriUiEvent = InsertKategoriUiEvent(),
+    insertKategoriUiEvent: InsertKategoriUiEvent,
     modifier: Modifier = Modifier,
     onValueChange: (InsertKategoriUiEvent) -> Unit ={},
     enabled: Boolean = true
