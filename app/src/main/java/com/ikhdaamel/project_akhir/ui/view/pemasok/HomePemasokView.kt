@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -31,6 +32,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,9 +54,9 @@ object DestinasiHomePemasok : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePemasokView(
-    navigateToInsertPemasok: () -> Unit,
+    onInsertPemasok: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (String) -> Unit = {},
+    onDetailPemasok: (String) -> Unit = {},
     viewModel: HomePemasokViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -72,7 +74,7 @@ fun HomePemasokView(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToInsertPemasok,
+                onClick = onInsertPemasok,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(18.dp)
             ) {
@@ -84,7 +86,7 @@ fun HomePemasokView(
             homePemasokUiState = viewModel.pemasokUIState,
             retryAction = {viewModel.getPemasok()},
             modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailClick, onDeleteClick = {
+            onDetailClick = onDetailPemasok, onDeleteClick = {
                 viewModel.deletePemasok(it.idPemasok)
                 viewModel.getPemasok()
             }
@@ -110,9 +112,7 @@ fun HomePemasokStatus(
             } else {
                 PemasokLayout(
                     pemasok = homePemasokUiState.pemasok, modifier = modifier.fillMaxWidth(),
-                    onDetailClick = {
-                        onDetailClick(it.idPemasok)
-                    },
+                    onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
                     }
@@ -150,7 +150,7 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier){
 fun PemasokLayout(
     pemasok: List<Pemasok>,
     modifier: Modifier = Modifier,
-    onDetailClick: (Pemasok) -> Unit,
+    onDetailClick: (String) -> Unit,
     onDeleteClick: (Pemasok) -> Unit = {}
 ){
     LazyColumn (
@@ -163,7 +163,7 @@ fun PemasokLayout(
                 pemasok = pemasok,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable {onDetailClick(pemasok)},
+                    .clickable {onDetailClick(pemasok.idPemasok)},
                 onDeleteClick = {
                     onDeleteClick(pemasok)
                 }
@@ -192,7 +192,7 @@ fun PemasokCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = pemasok.idPemasok,
+                    text = pemasok.namaPemasok,
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))
@@ -203,7 +203,7 @@ fun PemasokCard(
                     )
                 }
                 Text(
-                    text = pemasok.namaPemasok,
+                    text = pemasok.idPemasok,
                     style = MaterialTheme.typography.titleMedium
                 )
             }

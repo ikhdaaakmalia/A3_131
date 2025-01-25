@@ -49,7 +49,7 @@ object DestinasiInsertMerk: DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputMerkView(
-    navigateBack: () -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: InsertMerkViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -62,7 +62,7 @@ fun InputMerkView(
                 title = DestinasiInsertMerk.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
-                navigateUp = navigateBack
+                navigateUp = onBack
             )
         }
     ){ innerpadding ->
@@ -72,7 +72,7 @@ fun InputMerkView(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.insertMerk()
-                    navigateBack()
+                    onBack()
                 }
             },
             modifier = Modifier

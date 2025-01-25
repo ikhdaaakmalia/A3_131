@@ -3,9 +3,11 @@ package com.ikhdaamel.project_akhir.ui.view.kategori
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
@@ -38,14 +40,14 @@ object DestinasiDetailKategori: DestinasiNavigasi {
     override val route = "detail_kategori"
     override val titleRes = "DETAIL DATA KATEGORI"
     const val idKategori = "idKategori"
-    val routesWithArg = "$route/[$idKategori]"
+    val routesWithArg = "$route/{$idKategori}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailKategoriView(
-    navigateBack: () -> Unit,
-    navigateToUpdate: () -> Unit,
+    onBack: () -> Unit,
+    onUpdateKategori: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailKategoriViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -56,7 +58,7 @@ fun DetailKategoriView(
             CustomeTopAppBar(
                 title = DestinasiDetailKategori.titleRes,
                 canNavigateBack = true,
-                navigateUp = navigateBack,
+                navigateUp = onBack,
                 onRefresh = {
                     viewModel.getKategoriById()
                 }
@@ -64,7 +66,7 @@ fun DetailKategoriView(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToUpdate,
+                onClick = onUpdateKategori,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(18.dp)
             ) {
@@ -118,7 +120,7 @@ fun ItemDetailKategori(
     kategori: Kategori
 ){
     Card(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(16.dp, top = 95.dp, end = 16.dp),
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
@@ -143,11 +145,19 @@ fun ComponentDetailKategori(
         verticalAlignment = Alignment.CenterVertically
     ){
         Text(
-            text = "$title :",
+            text = "$title",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier.width(150.dp)
+        )
+        Text(
+            text = ":",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
+        Spacer(modifier = Modifier.width(16.dp))
         Text(
             text = isi,
             fontSize = 20.sp,

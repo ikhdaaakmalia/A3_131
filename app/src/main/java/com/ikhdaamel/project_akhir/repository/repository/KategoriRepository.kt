@@ -38,9 +38,9 @@ class NetworkKategoriRepository(
     }
 
     override suspend fun getKategori(): List<Kategori> {
-        return kategoriApiService.getKategori().dataKategori                             //tambah .data karena struktur json sdh beda
+        return kategoriApiService.getKategori().data                            //tambah .data karena struktur json sdh beda
     }
     override suspend fun getKategoriById(idKategori: String): Kategori {
-        return kategoriApiService.getKategoriById(idKategori).dataKategori                     //memanggil data untuk memasukkan value
+        return kategoriApiService.getKategoriById(idKategori).data                    //memanggil data untuk memasukkan value
     }
 }

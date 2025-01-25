@@ -38,9 +38,9 @@ class NetworkPemasokRepository(
     }
 
     override suspend fun getPemasok(): List<Pemasok> {
-        return pemasokApiService.getPemasok().dataPemasok                              //tambah .data karena struktur json sdh beda
+        return pemasokApiService.getPemasok().data                             //tambah .data karena struktur json sdh beda
     }
     override suspend fun getPemasokById(idPemasok: String): Pemasok {
-        return pemasokApiService.getPemasokById(idPemasok).dataPemasok                       //memanggil data untuk memasukkan value
+        return pemasokApiService.getPemasokById(idPemasok).data                       //memanggil data untuk memasukkan value
     }
 }

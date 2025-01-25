@@ -38,9 +38,9 @@ class NetworkMerkRepository(
     }
 
     override suspend fun getMerk(): List<Merk> {
-        return merkApiService.getMerk().dataMerk                             //tambah .data karena struktur json sdh beda
+        return merkApiService.getMerk().data                             //tambah .data karena struktur json sdh beda
     }
     override suspend fun getMerkById(idMerk: String): Merk {
-        return merkApiService.getMerkById(idMerk).dataMerk                       //memanggil data untuk memasukkan value
+        return merkApiService.getMerkById(idMerk).data                      //memanggil data untuk memasukkan value
     }
 }

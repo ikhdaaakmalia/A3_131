@@ -31,6 +31,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,9 +53,9 @@ object DestinasiHomeMerk : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeMerkView(
-    navigateToInsertMerk: () -> Unit,
+    onInsertMerk: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (String) -> Unit = {},
+    onDetailMerk: (String) -> Unit = {},
     viewModel: HomeMerkViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -72,7 +73,7 @@ fun HomeMerkView(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToInsertMerk,
+                onClick = onInsertMerk,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(18.dp)
             ) {
@@ -84,7 +85,7 @@ fun HomeMerkView(
             homeMerkUiState = viewModel.merkUIState,
             retryAction = {viewModel.getMerk()},
             modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailClick, onDeleteClick = {
+            onDetailClick = onDetailMerk, onDeleteClick = {
                 viewModel.deleteMerk(it.idMerk)
                 viewModel.getMerk()
             }
@@ -110,9 +111,7 @@ fun HomeMerkStatus(
             } else {
                 MerkLayout(
                     merk = homeMerkUiState.merk, modifier = modifier.fillMaxWidth(),
-                    onDetailClick = {
-                        onDetailClick(it.idMerk)
-                    },
+                    onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
                     }
@@ -150,7 +149,7 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier){
 fun MerkLayout(
     merk: List<Merk>,
     modifier: Modifier = Modifier,
-    onDetailClick: (Merk) -> Unit,
+    onDetailClick: (String) -> Unit,
     onDeleteClick: (Merk) -> Unit = {}
 ){
     LazyColumn (
@@ -163,7 +162,7 @@ fun MerkLayout(
                 merk = merk,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable {onDetailClick(merk)},
+                    .clickable {onDetailClick(merk.idMerk)},
                 onDeleteClick = {
                     onDeleteClick(merk)
                 }
@@ -192,7 +191,7 @@ fun MerkCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = merk.idMerk,
+                    text = merk.namaMerk,
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))
@@ -203,7 +202,7 @@ fun MerkCard(
                     )
                 }
                 Text(
-                    text = merk.namaMerk,
+                    text = merk.idMerk,
                     style = MaterialTheme.typography.titleMedium
                 )
             }

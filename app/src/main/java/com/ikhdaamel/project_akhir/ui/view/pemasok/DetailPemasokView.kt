@@ -3,9 +3,11 @@ package com.ikhdaamel.project_akhir.ui.view.pemasok
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
@@ -36,14 +38,14 @@ object DestinasiDetailPemasok: DestinasiNavigasi {
     override val route = "detail_pemasok"
     override val titleRes = "DETAIL DATA PEMASOK"
     const val idPemasok = "idPemasok"
-    val routesWithArg = "$route/[$idPemasok]"
+    val routesWithArg = "$route/{$idPemasok}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailPemasokView(
-    navigateBack: () -> Unit,
-    navigateToUpdate: () -> Unit,
+    onBack: () -> Unit,
+    onUpdatePemasok: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailPemasokViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -54,7 +56,7 @@ fun DetailPemasokView(
             CustomeTopAppBar(
                 title = DestinasiDetailPemasok.titleRes,
                 canNavigateBack = true,
-                navigateUp = navigateBack,
+                navigateUp = onBack,
                 onRefresh = {
                     viewModel.getPemasokById()
                 }
@@ -62,7 +64,7 @@ fun DetailPemasokView(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToUpdate,
+                onClick = onUpdatePemasok,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(18.dp)
             ) {
@@ -116,7 +118,7 @@ fun ItemDetailPemasok(
     pemasok: Pemasok
 ){
     Card(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(16.dp, top = 95.dp, end = 16.dp),
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
@@ -124,8 +126,11 @@ fun ItemDetailPemasok(
             modifier = Modifier.padding(16.dp)
         ){
             ComponentDetailPemasok(title = "Id Pemasok", isi = pemasok.idPemasok)
+            Spacer(modifier = Modifier.width(16.dp))
             ComponentDetailPemasok(title = "Nama Pemasok", isi = pemasok.namaPemasok)
+            Spacer(modifier = Modifier.width(16.dp))
             ComponentDetailPemasok(title = "Alamat Pemasok", isi = pemasok.alamatPemasok)
+            Spacer(modifier = Modifier.width(16.dp))
             ComponentDetailPemasok(title = "No Telepon Pemasok", isi = pemasok.telpPemasok)
         }
     }
@@ -142,11 +147,19 @@ fun ComponentDetailPemasok(
         verticalAlignment = Alignment.CenterVertically
     ){
         Text(
-            text = "$title :",
+            text = "$title",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier.width(150.dp)
+        )
+        Text(
+            text = ":",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
+        Spacer(modifier = Modifier.width(16.dp))
         Text(
             text = isi,
             fontSize = 20.sp,

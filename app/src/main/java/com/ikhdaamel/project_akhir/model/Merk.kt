@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 data class MerkDetailResponse(
     val status: Boolean,
     val message: String,
-    val dataMerk: Merk
+    val data: Merk
 )
 
 @Serializable
 data class MerkResponse(
     val status: Boolean,
     val message: String,
-    val dataMerk: List<Merk>
+    val data: List<Merk>
 )
 
 @Serializable

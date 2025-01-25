@@ -46,21 +46,21 @@ class NetworkProdukRepository(
     }
 
     override suspend fun getProduk(): List<Produk> {
-        return produkApiService.getProduk().dataProduk                              //tambah .data karena struktur json sdh beda
+        return produkApiService.getProduk().data                              //tambah .data karena struktur json sdh beda
     }
     override suspend fun getProdukById(idProduk: String): Produk {
-        return produkApiService.getProdukById(idProduk).dataProduk                       //memanggil data untuk memasukkan value
+        return produkApiService.getProdukById(idProduk).data                       //memanggil data untuk memasukkan value
     }
     override suspend fun getKategori(): List<Kategori> {
-        return produkApiService.getKategori().dataKategori
+        return produkApiService.getKategori().data
     }
     override suspend fun insertProdukInKategori(idKategori: String, produk: Produk) {
         produkApiService.insertProdukInKategori(idKategori, produk)
     }
     override suspend fun getPemasok(): List<Pemasok> {
-        return produkApiService.getPemasok().dataPemasok
+        return produkApiService.getPemasok().data
     }
     override suspend fun getMerk(): List<Merk> {
-        return produkApiService.getMerk().dataMerk
+        return produkApiService.getMerk().data
     }
 }

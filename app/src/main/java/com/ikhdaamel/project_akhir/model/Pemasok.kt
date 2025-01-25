@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 data class PemasokDetailResponse(
     val status: Boolean,
     val message: String,
-    val dataPemasok: Pemasok
+    val data: Pemasok
 )
 
 @Serializable
 data class PemasokResponse(
     val status: Boolean,
     val message: String,
-    val dataPemasok: List<Pemasok>
+    val data: List<Pemasok>
 )
 
 @Serializable

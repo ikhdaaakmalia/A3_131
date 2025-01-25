@@ -22,7 +22,7 @@ object DestinasiUpdateMerk : DestinasiNavigasi {
     override val route = "update_merk"
     override val titleRes = "UPDATE DATA MERK"
     const val idMerk = "idMerk"
-    val routesWithArg = "$route/[$idMerk]"
+    val routesWithArg = "$route/{$idMerk}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,6 +35,7 @@ fun UpdateMerkView(
 ){
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val updateMerkUIState = viewModel.updateMerkUIState
 
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -50,7 +51,7 @@ fun UpdateMerkView(
         InputMerkBody(
             modifier = androidx.compose.ui.Modifier.padding(padding),
             insertMerkUiState = viewModel.updateMerkUIState,
-            onMerkValueChange = viewModel::UpdateInsertMerkState,
+            onMerkValueChange = viewModel::updateMerkState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.updateMerk()

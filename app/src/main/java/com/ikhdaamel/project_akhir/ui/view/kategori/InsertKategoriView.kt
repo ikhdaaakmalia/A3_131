@@ -49,7 +49,7 @@ object DestinasiInsertKategori: DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputKategoriView(
-    navigateBack: () -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: InsertKategoriViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -62,7 +62,7 @@ fun InputKategoriView(
                 title = DestinasiInsertKategori.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
-                navigateUp = navigateBack
+                navigateUp = onBack
             )
         }
     ){ innerpadding ->
@@ -72,7 +72,7 @@ fun InputKategoriView(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.insertKategori()
-                    navigateBack()
+                    onBack()
                 }
             },
             modifier = Modifier

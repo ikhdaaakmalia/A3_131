@@ -22,7 +22,7 @@ object DestinasiUpdateKategori : DestinasiNavigasi {
     override val route = "update_kategori"
     override val titleRes = "UPDATE DATA KATEGORI"
     const val idKategori = "idKategori"
-    val routesWithArg = "$route/[$idKategori]"
+    val routesWithArg = "$route/{$idKategori}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,6 +35,7 @@ fun UpdateKategoriView(
 ){
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val updateKategoriUIState = viewModel.updateKategoriUIState
 
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -50,7 +51,7 @@ fun UpdateKategoriView(
         InputKategoriBody(
             modifier = androidx.compose.ui.Modifier.padding(padding),
             insertKategoriUiState = viewModel.updateKategoriUIState,
-            onKategoriValueChange = viewModel::UpdateInsertKategoriState,
+            onKategoriValueChange = viewModel::updateInsertKategoriState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.updateKategori()

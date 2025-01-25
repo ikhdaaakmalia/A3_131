@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 data class KategoriDetailResponse(
     val status: Boolean,
     val message: String,
-    val dataKategori: Kategori
+    val data: Kategori
 )
 
 @Serializable
 data class KategoriResponse(
     val status: Boolean,
     val message: String,
-    val dataKategori: List<Kategori>
+    val data: List<Kategori>
 )
 
 @Serializable

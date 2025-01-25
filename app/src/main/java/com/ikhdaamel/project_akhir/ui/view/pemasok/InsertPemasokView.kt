@@ -50,7 +50,7 @@ object DestinasiInsertPemasok: DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputPemasokView(
-    navigateBack: () -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: InsertPemasokViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -63,7 +63,7 @@ fun InputPemasokView(
                 title = DestinasiInsertPemasok.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
-                navigateUp = navigateBack
+                navigateUp = onBack
             )
         }
     ){ innerpadding ->
@@ -73,7 +73,7 @@ fun InputPemasokView(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.insertPemasok()
-                    navigateBack()
+                    onBack()
                 }
             },
             modifier = Modifier

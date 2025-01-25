@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 data class ProdukDetailResponse(
     val status: Boolean,
     val message: String,
-    val dataProduk: Produk
+    val data: Produk
 )
 
 @Serializable
 data class ProdukResponse(
     val status: Boolean,
     val message: String,
-    val dataProduk: List<Produk>
+    val data: List<Produk>
 )
 
 @Serializable

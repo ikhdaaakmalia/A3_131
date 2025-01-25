@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikhdaamel.project_akhir.repository.repository.KategoriRepository
 import com.ikhdaamel.project_akhir.ui.view.kategori.DestinasiUpdateKategori
-
 import kotlinx.coroutines.launch
 
 class UpdateKategoriViewModel(
@@ -17,7 +16,7 @@ class UpdateKategoriViewModel(
 ): ViewModel(){
     var updateKategoriUIState by mutableStateOf(InsertKategoriUiState())
         private set
-    private val _idKategori: String = checkNotNull(savedStateHandle[DestinasiUpdateKategori.idKategori])
+    private val _idKategori: String = checkNotNull(savedStateHandle["idKategori"])
 
     init {
         viewModelScope.launch {
@@ -25,9 +24,9 @@ class UpdateKategoriViewModel(
                 .toUiStateKategori()
         }
     }
-    fun UpdateInsertKategoriState(insertKategoriUiEvent: InsertKategoriUiEvent){
+    fun updateInsertKategoriState(kategoriUiEvent: InsertKategoriUiEvent){
         updateKategoriUIState = InsertKategoriUiState(
-            insertKategoriUiEvent = InsertKategoriUiEvent()
+            insertKategoriUiEvent = kategoriUiEvent
         )
     }
     suspend fun updateKategori(){

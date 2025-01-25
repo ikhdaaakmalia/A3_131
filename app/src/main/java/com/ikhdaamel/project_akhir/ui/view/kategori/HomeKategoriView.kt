@@ -1,6 +1,7 @@
 package com.ikhdaamel.project_akhir.ui.view.kategori
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,7 +32,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -55,9 +58,9 @@ object DestinasiHomeKategori : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeKategoriView(
-    navigateToInsertKategori: () -> Unit,
+    onInsertKategori: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (String) -> Unit = {},
+    onDetailKategori: (String) -> Unit = {},
     viewModel: HomeKategoriViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -75,7 +78,7 @@ fun HomeKategoriView(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToInsertKategori,
+                onClick = onInsertKategori,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(18.dp)
             ) {
@@ -87,7 +90,7 @@ fun HomeKategoriView(
             homeKategoriUiState = viewModel.kategoriUIState,
             retryAction = {viewModel.getKategori()},
             modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailClick, onDeleteClick = {
+            onDetailClick = onDetailKategori, onDeleteClick = {
                 viewModel.deleteKategori(it.idKategori)
                 viewModel.getKategori()
             }
@@ -113,9 +116,7 @@ fun HomeKategoriStatus(
             } else {
                 KategoriLayout(
                     kategori = homeKategoriUiState.kategori, modifier = modifier.fillMaxWidth(),
-                    onDetailClick = {
-                        onDetailClick(it.idKategori)
-                    },
+                    onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
                     }
@@ -153,7 +154,7 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier){
 fun KategoriLayout(
     kategori: List<Kategori>,
     modifier: Modifier = Modifier,
-    onDetailClick: (Kategori) -> Unit,
+    onDetailClick: (String) -> Unit,
     onDeleteClick: (Kategori) -> Unit = {}
 ){
     LazyColumn (
@@ -166,7 +167,7 @@ fun KategoriLayout(
                 kategori = kategori,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable {onDetailClick(kategori)},
+                    .clickable {onDetailClick(kategori.idKategori)},
                 onDeleteClick = {
                     onDeleteClick(kategori)
                 }
@@ -199,7 +200,10 @@ fun KategoriCard(
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))
-                IconButton(onClick ={onDeleteClick(kategori)}){
+                IconButton(
+                    onClick ={onDeleteClick(kategori)},
+
+                ){
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = null,

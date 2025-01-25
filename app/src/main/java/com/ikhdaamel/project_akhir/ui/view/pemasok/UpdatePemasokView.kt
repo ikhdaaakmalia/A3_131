@@ -23,21 +23,22 @@ object DestinasiUpdatePemasok : DestinasiNavigasi {
     override val route = "update_pemasok"
     override val titleRes = "UPDATE DATA PEMASOK"
     const val idPemasok = "idPemasok"
-    val routesWithArg = "$route/[$idPemasok]"
+    val routesWithArg = "$route/{$idPemasok}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpdatePemasokView(
-    onBack:() -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
     onNavigate: () -> Unit,
     viewModel: UpdatePemasokViewModel = viewModel(factory = PenyediaViewModel.Factory)
-){
+) {
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val updatePemasokUIState = viewModel.updatePemasokUIState
 
-    Scaffold (
+    Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CustomeTopAppBar(
@@ -47,16 +48,16 @@ fun UpdatePemasokView(
                 navigateUp = onBack
             )
         }
-    ){ padding ->
+    ) { padding ->
         InputPemasokBody(
             modifier = androidx.compose.ui.Modifier.padding(padding),
-            insertPemasokUiState = viewModel.updatePemasokUIState,
-            onPemasokValueChange = viewModel::UpdateInsertPemasokState,
+            insertPemasokUiState = updatePemasokUIState,
+            onPemasokValueChange = viewModel::updatePemasokState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.updatePemasok()
                     delay(600)
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         onNavigate()
                     }
                 }

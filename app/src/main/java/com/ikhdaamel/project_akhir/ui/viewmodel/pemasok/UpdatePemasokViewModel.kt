@@ -13,10 +13,10 @@ import kotlinx.coroutines.launch
 class UpdatePemasokViewModel(
     savedStateHandle: SavedStateHandle,
     private val pemasokRepository: PemasokRepository
-): ViewModel(){
+): ViewModel() {
     var updatePemasokUIState by mutableStateOf(InsertPemasokUiState())
         private set
-    private val _idPemasok: String = checkNotNull(savedStateHandle[DestinasiUpdatePemasok.idPemasok])
+    private val _idPemasok: String = checkNotNull(savedStateHandle["idPemasok"])
 
     init {
         viewModelScope.launch {
@@ -24,16 +24,16 @@ class UpdatePemasokViewModel(
                 .toUiStatePemasok()
         }
     }
-    fun UpdateInsertPemasokState(insertPemasokUiEvent: InsertPemasokUiEvent){
+    fun updatePemasokState(pemasokUiEvent: InsertPemasokUiEvent) {
         updatePemasokUIState = InsertPemasokUiState(
-            insertPemasokUiEvent = InsertPemasokUiEvent()
+            insertPemasokUiEvent = pemasokUiEvent
         )
     }
-    suspend fun updatePemasok(){
+    suspend fun updatePemasok() {
         viewModelScope.launch {
             try {
                 pemasokRepository.updatePemasok(_idPemasok, updatePemasokUIState.insertPemasokUiEvent.toPemasok())
-            } catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }

@@ -7,7 +7,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikhdaamel.project_akhir.repository.repository.MerkRepository
-import com.ikhdaamel.project_akhir.ui.view.merk.DestinasiUpdateMerk
 import kotlinx.coroutines.launch
 
 class UpdateMerkViewModel(
@@ -16,7 +15,7 @@ class UpdateMerkViewModel(
 ): ViewModel(){
     var updateMerkUIState by mutableStateOf(InsertMerkUiState())
         private set
-    private val _idMerk: String = checkNotNull(savedStateHandle[DestinasiUpdateMerk.idMerk])
+    private val _idMerk: String = checkNotNull(savedStateHandle["idMerk"])
 
     init {
         viewModelScope.launch {
@@ -24,9 +23,9 @@ class UpdateMerkViewModel(
                 .toUiStateMerk()
         }
     }
-    fun UpdateInsertMerkState(insertMerkUiEvent: InsertMerkUiEvent){
+    fun updateMerkState(merkUiEvent: InsertMerkUiEvent){
         updateMerkUIState = InsertMerkUiState(
-            insertMerkUiEvent = InsertMerkUiEvent()
+            insertMerkUiEvent = merkUiEvent
         )
     }
     suspend fun updateMerk(){
