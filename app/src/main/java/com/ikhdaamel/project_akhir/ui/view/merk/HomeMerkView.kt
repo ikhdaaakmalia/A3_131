@@ -43,7 +43,6 @@ import com.ikhdaamel.project_akhir.model.Merk
 import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
-import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkViewModel
 import kotlinx.coroutines.flow.StateFlow

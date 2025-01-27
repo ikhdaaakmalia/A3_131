@@ -7,7 +7,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikhdaamel.project_akhir.repository.repository.KategoriRepository
-import com.ikhdaamel.project_akhir.ui.view.kategori.DestinasiUpdateKategori
 import kotlinx.coroutines.launch
 
 class UpdateKategoriViewModel(

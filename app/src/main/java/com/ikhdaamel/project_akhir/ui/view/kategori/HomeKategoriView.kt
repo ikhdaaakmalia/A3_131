@@ -1,7 +1,6 @@
 package com.ikhdaamel.project_akhir.ui.view.kategori
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,22 +34,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ikhdaamel.project_akhir.R
 import com.ikhdaamel.project_akhir.model.Kategori
-import com.ikhdaamel.project_akhir.model.Merk
 import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriViewModel
-import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkUiState
-import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkViewModel
-import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.HomePemasokUiState
 import kotlinx.coroutines.flow.StateFlow
 
 object DestinasiHomeKategori : DestinasiNavigasi {
