@@ -1,13 +1,12 @@
 package com.ikhdaamel.project_akhir.ui.viewmodel.pemasok
 
 import retrofit2.HttpException
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikhdaamel.project_akhir.model.Pemasok
 import com.ikhdaamel.project_akhir.repository.repository.PemasokRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -17,16 +16,19 @@ sealed class HomePemasokUiState{
     object Loading: HomePemasokUiState()
 }
 class HomePemasokViewModel(private val pemasok: PemasokRepository): ViewModel(){
-    var pemasokUIState: HomePemasokUiState by mutableStateOf(HomePemasokUiState.Loading)
-        private set
+
+    private val _pemasokUIState = MutableStateFlow<HomePemasokUiState>(HomePemasokUiState.Loading)
+    val pemasokUIState: StateFlow<HomePemasokUiState> get() = _pemasokUIState
+
     init {
         getPemasok()
     }
     fun getPemasok(){
         viewModelScope.launch {
-            pemasokUIState = HomePemasokUiState.Loading
-            pemasokUIState = try {
-                HomePemasokUiState.Success(pemasok.getPemasok())
+            _pemasokUIState.value = HomePemasokUiState.Loading
+            _pemasokUIState.value = try {
+                val pemasokList = pemasok.getPemasok()
+                HomePemasokUiState.Success(pemasokList)
             } catch (e: IOException) {
                 HomePemasokUiState.Error
             } catch (e: HttpException) {
