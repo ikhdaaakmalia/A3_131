@@ -146,21 +146,21 @@ fun ComponentDetailKategori(
     ){
         Text(
             text = "$title",
-            fontSize = 20.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier.width(150.dp)
         )
         Text(
             text = ":",
-            fontSize = 20.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             text = isi,
-            fontSize = 20.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
     }
