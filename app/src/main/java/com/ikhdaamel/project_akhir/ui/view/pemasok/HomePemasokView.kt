@@ -30,6 +30,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,6 +46,7 @@ import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.HomePemasokUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.HomePemasokViewModel
+import kotlinx.coroutines.flow.StateFlow
 
 object DestinasiHomePemasok : DestinasiNavigasi {
     override val route = "home_pemasok"
@@ -54,6 +56,7 @@ object DestinasiHomePemasok : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePemasokView(
+    onBack: () -> Unit,
     onInsertPemasok: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailPemasok: (String) -> Unit = {},
@@ -65,7 +68,8 @@ fun HomePemasokView(
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiHomePemasok.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = onBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getPemasok()
@@ -86,7 +90,8 @@ fun HomePemasokView(
             homePemasokUiState = viewModel.pemasokUIState,
             retryAction = {viewModel.getPemasok()},
             modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailPemasok, onDeleteClick = {
+            onDetailClick = onDetailPemasok,
+            onDeleteClick = {
                 viewModel.deletePemasok(it.idPemasok)
                 viewModel.getPemasok()
             }
@@ -96,22 +101,22 @@ fun HomePemasokView(
 
 @Composable
 fun HomePemasokStatus(
-    homePemasokUiState: HomePemasokUiState,
+    homePemasokUiState: StateFlow<HomePemasokUiState>,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Pemasok) -> Unit = {},
     onDetailClick: (String) -> Unit
 ){
-    when(homePemasokUiState){
+    when(val state = homePemasokUiState.collectAsState().value){
         is HomePemasokUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
         is HomePemasokUiState.Success ->
-            if(homePemasokUiState.pemasok.isEmpty()){
+            if(state.pemasok.isEmpty()){
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                     Text(text = "Tidak Ada Data Pemasok")
                 }
             } else {
                 PemasokLayout(
-                    pemasok = homePemasokUiState.pemasok, modifier = modifier.fillMaxWidth(),
+                    pemasok = state.pemasok, modifier = modifier.fillMaxWidth(),
                     onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
@@ -193,7 +198,8 @@ fun PemasokCard(
             ){
                 Text(
                     text = pemasok.namaPemasok,
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
+                    color = Color.Green
                 )
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick ={onDeleteClick(pemasok)}){

@@ -29,6 +29,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,8 +43,10 @@ import com.ikhdaamel.project_akhir.model.Merk
 import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
+import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkViewModel
+import kotlinx.coroutines.flow.StateFlow
 
 object DestinasiHomeMerk : DestinasiNavigasi {
     override val route = "home_merk"
@@ -53,6 +56,7 @@ object DestinasiHomeMerk : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeMerkView(
+    onBack: () -> Unit,
     onInsertMerk: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailMerk: (String) -> Unit = {},
@@ -64,7 +68,8 @@ fun HomeMerkView(
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiHomeMerk.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = onBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getMerk()
@@ -95,22 +100,22 @@ fun HomeMerkView(
 
 @Composable
 fun HomeMerkStatus(
-    homeMerkUiState: HomeMerkUiState,
+    homeMerkUiState: StateFlow<HomeMerkUiState>,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Merk) -> Unit = {},
     onDetailClick: (String) -> Unit
 ){
-    when(homeMerkUiState){
+    when(val state = homeMerkUiState.collectAsState().value){
         is HomeMerkUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
         is HomeMerkUiState.Success ->
-            if(homeMerkUiState.merk.isEmpty()){
+            if(state.merk.isEmpty()){
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                     Text(text = "Tidak Ada Data Merk")
                 }
             } else {
                 MerkLayout(
-                    merk = homeMerkUiState.merk, modifier = modifier.fillMaxWidth(),
+                    merk = state.merk, modifier = modifier.fillMaxWidth(),
                     onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
@@ -192,7 +197,8 @@ fun MerkCard(
             ){
                 Text(
                     text = merk.namaMerk,
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
+                    color = Color.Green
                 )
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick ={onDeleteClick(merk)}){

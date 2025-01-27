@@ -30,6 +30,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,6 +50,8 @@ import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkUiState
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkViewModel
+import com.ikhdaamel.project_akhir.ui.viewmodel.pemasok.HomePemasokUiState
+import kotlinx.coroutines.flow.StateFlow
 
 object DestinasiHomeKategori : DestinasiNavigasi {
     override val route = "home_kategori"
@@ -58,6 +61,7 @@ object DestinasiHomeKategori : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeKategoriView(
+    onBack: () -> Unit,
     onInsertKategori: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailKategori: (String) -> Unit = {},
@@ -69,7 +73,8 @@ fun HomeKategoriView(
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiHomeKategori.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = onBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getKategori()
@@ -100,22 +105,22 @@ fun HomeKategoriView(
 
 @Composable
 fun HomeKategoriStatus(
-    homeKategoriUiState: HomeKategoriUiState,
+    homeKategoriUiState: StateFlow<HomeKategoriUiState>,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Kategori) -> Unit = {},
     onDetailClick: (String) -> Unit
 ){
-    when(homeKategoriUiState){
+    when(val state = homeKategoriUiState.collectAsState().value){
         is HomeKategoriUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
         is HomeKategoriUiState.Success ->
-            if(homeKategoriUiState.kategori.isEmpty()){
+            if(state.kategori.isEmpty()){
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                     Text(text = "Tidak Ada Data Kategori")
                 }
             } else {
                 KategoriLayout(
-                    kategori = homeKategoriUiState.kategori, modifier = modifier.fillMaxWidth(),
+                    kategori = state.kategori, modifier = modifier.fillMaxWidth(),
                     onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
@@ -196,8 +201,9 @@ fun KategoriCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = kategori.idKategori,
-                    style = MaterialTheme.typography.titleLarge
+                    text = kategori.namaKategori,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.Green
                 )
                 Spacer(Modifier.weight(1f))
                 IconButton(
@@ -210,8 +216,8 @@ fun KategoriCard(
                     )
                 }
                 Text(
-                    text = kategori.namaKategori,
-                    style = MaterialTheme.typography.titleMedium
+                    text = kategori.idKategori,
+                    style = MaterialTheme.typography.titleLarge
                 )
             }
             Text(
