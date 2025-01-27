@@ -9,13 +9,16 @@ import com.ikhdaamel.project_akhir.model.Produk
 import com.ikhdaamel.project_akhir.repository.repository.ProdukRepository
 import kotlinx.coroutines.launch
 
-class InsertProdukViewModel (private val produkRepository: ProdukRepository) : ViewModel(){
+class InsertProdukViewModel (
+    private val produkRepository: ProdukRepository,
+    ) : ViewModel(){
     var produkUiState by mutableStateOf(InsertProdukUiState())
         private set
+
     fun updateInsertProdukState(insertProdukUiEvent: InsertProdukUiEvent){
         produkUiState = InsertProdukUiState(insertProdukUiEvent = insertProdukUiEvent)
     }
-    suspend fun insertProduk(){
+    fun insertProduk(){
         viewModelScope.launch{
             try {
                 produkRepository.insertProduk(produkUiState.insertProdukUiEvent.toProduk())

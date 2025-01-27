@@ -24,9 +24,9 @@ class UpdateProdukViewModel(
                 .toUiStateProduk()
         }
     }
-    fun UpdateInsertProdukState(insertProdukUiEvent: InsertProdukUiEvent){
+    fun updateProdukState(produkUiEvent: InsertProdukUiEvent){
         updateProdukUIState = InsertProdukUiState(
-            insertProdukUiEvent = InsertProdukUiEvent()
+            insertProdukUiEvent = produkUiEvent
         )
     }
     suspend fun updateProduk(){
