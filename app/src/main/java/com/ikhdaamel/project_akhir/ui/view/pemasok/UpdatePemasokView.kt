@@ -16,7 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.internal.platform.android.BouncyCastleSocketAdapter.Companion.factory
 import androidx.compose.ui.Modifier
 
 object DestinasiUpdatePemasok : DestinasiNavigasi {
