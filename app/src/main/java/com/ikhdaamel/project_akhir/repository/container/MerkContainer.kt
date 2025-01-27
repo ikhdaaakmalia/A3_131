@@ -3,11 +3,9 @@ package com.ikhdaamel.project_akhir.repository.container
 import com.ikhdaamel.project_akhir.repository.repository.KategoriRepository
 import com.ikhdaamel.project_akhir.repository.repository.MerkRepository
 import com.ikhdaamel.project_akhir.repository.repository.NetworkMerkRepository
-import com.ikhdaamel.project_akhir.repository.repository.NetworkPemasokRepository
 import com.ikhdaamel.project_akhir.repository.repository.PemasokRepository
 import com.ikhdaamel.project_akhir.repository.repository.ProdukRepository
 import com.ikhdaamel.project_akhir.service.MerkService
-import com.ikhdaamel.project_akhir.service.PemasokService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
