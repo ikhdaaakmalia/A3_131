@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ikhdaamel.project_akhir.R
 import com.ikhdaamel.project_akhir.model.Merk
-import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
+import com.ikhdaamel.project_akhir.ui.customewidget.CustomTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.HomeMerkUiState
@@ -48,7 +48,7 @@ fun HomeMerkView(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = Color(0xFF005BAC),
         topBar = {
-            CustomeTopAppBar(
+            CustomTopAppBar(
                 title = DestinasiHomeMerk.titleRes,
                 canNavigateBack = true,
                 navigateUp = onBack,

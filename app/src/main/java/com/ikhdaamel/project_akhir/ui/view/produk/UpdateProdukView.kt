@@ -13,7 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ikhdaamel.project_akhir.ui.customewidget.Choice.kategoriChoice
 import com.ikhdaamel.project_akhir.ui.customewidget.Choice.merkChoice
 import com.ikhdaamel.project_akhir.ui.customewidget.Choice.pemasokChoice
-import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
+import com.ikhdaamel.project_akhir.ui.customewidget.CustomTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.HomeKategoriViewModel
@@ -55,7 +55,7 @@ fun UpdateProdukView(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = Color(0xFF005BAC),
         topBar = {
-            CustomeTopAppBar(
+            CustomTopAppBar(
                 title = DestinasiUpdateProduk.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,

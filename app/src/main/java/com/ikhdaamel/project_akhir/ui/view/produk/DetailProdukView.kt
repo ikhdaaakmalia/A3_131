@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -31,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ikhdaamel.project_akhir.model.Produk
-import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
+import com.ikhdaamel.project_akhir.ui.customewidget.CustomTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.view.pemasok.OnError
 import com.ikhdaamel.project_akhir.ui.view.pemasok.OnLoading
@@ -60,7 +59,7 @@ fun DetailProdukView(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = Color(0xFF005BAC),
         topBar = {
-            CustomeTopAppBar(
+            CustomTopAppBar(
                 title = DestinasiDetailProduk.titleRes,
                 canNavigateBack = true,
                 navigateUp = onBack,
@@ -124,7 +123,7 @@ fun DetailProdukStatus(
                     Text("Tidak Ada Data")
                 }
             } else {
-                com.ikhdaamel.project_akhir.ui.view.produk.ItemDetailProduk(
+                ItemDetailProduk(
                     produk = detailProdukUiState.produk,
                     modifier = modifier.fillMaxWidth()
                 )

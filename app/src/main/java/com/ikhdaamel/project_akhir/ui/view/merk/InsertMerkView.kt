@@ -33,7 +33,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
+import com.ikhdaamel.project_akhir.ui.customewidget.CustomTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.merk.InsertMerkUiEvent
@@ -59,7 +59,7 @@ fun InputMerkView(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = Color(0xFF005BAC),
         topBar = {
-            CustomeTopAppBar(
+            CustomTopAppBar(
                 title = DestinasiInsertMerk.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,

@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -34,7 +33,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ikhdaamel.project_akhir.ui.customewidget.CustomeTopAppBar
+import com.ikhdaamel.project_akhir.ui.customewidget.CustomTopAppBar
 import com.ikhdaamel.project_akhir.ui.navigation.DestinasiNavigasi
 import com.ikhdaamel.project_akhir.ui.viewmodel.PenyediaViewModel
 import com.ikhdaamel.project_akhir.ui.viewmodel.kategori.InsertKategoriUiEvent
@@ -60,7 +59,7 @@ fun InputKategoriView(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = Color(0xFF005BAC),
         topBar = {
-            CustomeTopAppBar(
+            CustomTopAppBar(
                 title = DestinasiInsertKategori.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,

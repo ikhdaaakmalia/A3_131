@@ -27,14 +27,14 @@ import com.ikhdaamel.project_akhir.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomeTopAppBar(
-    title: String,
-    canNavigateBack: Boolean,
-    modifier: Modifier = Modifier,
-    scrollBehavior: TopAppBarScrollBehavior? = null,
-    navigateUp: () -> Unit = {},
-    onRefresh: () -> Unit = {},
-    showLogo: Boolean = false
+fun CustomTopAppBar(
+        title: String,
+        canNavigateBack: Boolean,
+        modifier: Modifier = Modifier,
+        scrollBehavior: TopAppBarScrollBehavior? = null,
+        navigateUp: () -> Unit = {},
+        onRefresh: () -> Unit = {},
+        showLogo: Boolean = false
 ) {
     CenterAlignedTopAppBar(
         title = {
