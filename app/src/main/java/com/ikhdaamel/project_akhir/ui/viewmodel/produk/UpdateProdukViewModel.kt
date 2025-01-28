@@ -16,7 +16,7 @@ class UpdateProdukViewModel(
 ): ViewModel(){
     var updateProdukUIState by mutableStateOf(InsertProdukUiState())
         private set
-    private val _idProduk: String = checkNotNull(savedStateHandle[DestinasiUpdateProduk.idProduk])
+    private val _idProduk: String = checkNotNull(savedStateHandle["idProduk"])
 
     init {
         viewModelScope.launch {
