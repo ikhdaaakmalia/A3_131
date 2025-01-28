@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -56,6 +57,7 @@ fun InputMerkView(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = Color(0xFF005BAC),
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiInsertMerk.titleRes,
@@ -104,7 +106,7 @@ fun InputMerkBody(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "SIMPAN")
+            Text(text = "SIMPAN", color = Color.White)
         }
     }
 }
@@ -123,17 +125,19 @@ fun FormInputMerk(
     ){
         Text(text = "Masukkan Data Merk",
             fontWeight = FontWeight.Bold,
-            fontSize = 19.sp
+            fontSize = 19.sp,
+            color = Color.White
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = insertMerkUiEvent.idMerk,
             onValueChange = {onValueChange(insertMerkUiEvent.copy(idMerk = it))},
-            label = { Text("Id Merk") },
+            label = { Text("Id Merk", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Info,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -148,11 +152,12 @@ fun FormInputMerk(
             modifier = Modifier.fillMaxWidth(),
             value = insertMerkUiEvent.namaMerk,
             onValueChange = {onValueChange(insertMerkUiEvent.copy(namaMerk = it))},
-            label = { Text("Nama Merk") },
+            label = { Text("Nama Merk", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.CheckCircle,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -167,11 +172,12 @@ fun FormInputMerk(
             modifier = Modifier.fillMaxWidth(),
             value = insertMerkUiEvent.deskMerk,
             onValueChange = {onValueChange(insertMerkUiEvent.copy(deskMerk = it))},
-            label = { Text("Deskripsi Merk") },
+            label = { Text("Deskripsi Merk", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Menu,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -186,7 +192,8 @@ fun FormInputMerk(
         if (enabled) {
             Text(
                 text = "Isi Semua Data!",
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(12.dp),
+                color = Color.White
             )
         }
         Divider(

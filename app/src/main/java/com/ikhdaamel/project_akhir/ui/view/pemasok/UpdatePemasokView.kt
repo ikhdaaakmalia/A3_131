@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 object DestinasiUpdatePemasok : DestinasiNavigasi {
     override val route = "update_pemasok"
@@ -39,6 +40,7 @@ fun UpdatePemasokView(
 
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = Color(0xFF005BAC),
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiUpdatePemasok.titleRes,

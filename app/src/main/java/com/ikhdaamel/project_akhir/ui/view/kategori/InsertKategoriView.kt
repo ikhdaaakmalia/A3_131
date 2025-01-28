@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -56,6 +58,7 @@ fun InputKategoriView(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = Color(0xFF005BAC),
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiInsertKategori.titleRes,
@@ -82,7 +85,6 @@ fun InputKategoriView(
     }
 }
 
-
 @Composable
 fun InputKategoriBody(
     insertKategoriUiState: InsertKategoriUiState,
@@ -104,12 +106,11 @@ fun InputKategoriBody(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "SIMPAN")
+            Text(text = "SIMPAN", color = Color.White)
         }
     }
 }
 
-//@Preview(showBackground = true)
 @Composable
 fun FormInputKategori(
     insertKategoriUiEvent: InsertKategoriUiEvent,
@@ -120,21 +121,23 @@ fun FormInputKategori(
     Column (
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ){
         Text(text = "Masukkan Data Kategori",
             fontWeight = FontWeight.Bold,
-            fontSize = 19.sp
+            fontSize = 19.sp,
+            color = Color.White
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = insertKategoriUiEvent.idKategori,
             onValueChange = {onValueChange(insertKategoriUiEvent.copy(idKategori = it))},
-            label = { Text("Id Kategori") },
+            label = { Text("Id Kategori", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Info,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -149,11 +152,12 @@ fun FormInputKategori(
             modifier = Modifier.fillMaxWidth(),
             value = insertKategoriUiEvent.namaKategori,
             onValueChange = {onValueChange(insertKategoriUiEvent.copy(namaKategori = it))},
-            label = { Text("Nama Kategori") },
+            label = { Text("Nama Kategori", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.CheckCircle,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -168,11 +172,12 @@ fun FormInputKategori(
             modifier = Modifier.fillMaxWidth(),
             value = insertKategoriUiEvent.deskKategori,
             onValueChange = {onValueChange(insertKategoriUiEvent.copy(deskKategori = it))},
-            label = { Text("Deskripsi Kategori") },
+            label = { Text("Deskripsi Kategori", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Menu,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -187,7 +192,8 @@ fun FormInputKategori(
         if (enabled) {
             Text(
                 text = "Isi Semua Data!",
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(12.dp),
+                color = Color.White
             )
         }
         Divider(

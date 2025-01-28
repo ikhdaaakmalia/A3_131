@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -57,6 +58,7 @@ fun InputPemasokView(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = Color(0xFF005BAC),
         topBar = {
             CustomeTopAppBar(
                 title = DestinasiInsertPemasok.titleRes,
@@ -104,7 +106,7 @@ fun InputPemasokBody(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "SIMPAN")
+            Text(text = "SIMPAN", color = Color.White)
         }
     }
 }
@@ -123,17 +125,19 @@ fun FormInputPemasok(
     ){
         Text(text = "Masukkan Data Pemasok",
             fontWeight = FontWeight.Bold,
-            fontSize = 19.sp
+            fontSize = 19.sp,
+            color = Color.White
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = insertPemasokUiEvent.idPemasok,
             onValueChange = {onValueChange(insertPemasokUiEvent.copy(idPemasok = it))},
-            label = { Text("Id Pemasok") },
+            label = { Text("Id Pemasok", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Info,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -148,11 +152,12 @@ fun FormInputPemasok(
             modifier = Modifier.fillMaxWidth(),
             value = insertPemasokUiEvent.namaPemasok,
             onValueChange = {onValueChange(insertPemasokUiEvent.copy(namaPemasok = it))},
-            label = { Text("Nama Pemasok") },
+            label = { Text("Nama Pemasok", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Person,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -167,11 +172,12 @@ fun FormInputPemasok(
             modifier = Modifier.fillMaxWidth(),
             value = insertPemasokUiEvent.alamatPemasok,
             onValueChange = {onValueChange(insertPemasokUiEvent.copy(alamatPemasok = it))},
-            label = { Text("Alamat Pemasok") },
+            label = { Text("Alamat Pemasok", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Home,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -186,11 +192,12 @@ fun FormInputPemasok(
             modifier = Modifier.fillMaxWidth(),
             value = insertPemasokUiEvent.telpPemasok,
             onValueChange = {onValueChange(insertPemasokUiEvent.copy(telpPemasok = it))},
-            label = { Text("No Telepon Pemasok") },
+            label = { Text("No Telepon Pemasok", color = Color.White) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Phone,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = Color.White
                 )
             },
             enabled = enabled,
@@ -205,7 +212,8 @@ fun FormInputPemasok(
         if (enabled) {
             Text(
                 text = "Isi Semua Data!",
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(12.dp),
+                color = Color.White
             )
         }
         Divider(
