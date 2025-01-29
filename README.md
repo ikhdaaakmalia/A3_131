@@ -36,4 +36,4 @@ tabel merk
 tabel kategori
 ![image](https://github.com/user-attachments/assets/f6fdf886-1deb-467c-8dd6-07a9782b0586)
 tabel produk
-![image](https://github.com/user-attachments/assets/c88ae9d2-af39-4464-9b0e-1a7b97c3941d)
+![image](https://github.com/user-attachments/assets/7c47b138-7824-45d8-9374-b03a5f9daab1)
