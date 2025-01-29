@@ -1,11 +1,11 @@
 halaman utama(home produk)
 ![1  HomeProduk](https://github.com/user-attachments/assets/ddd6af1e-f776-4bc8-93a4-5db93f521e31)
 insert produk
-![2  InsertProduk](https://github.com/user-attachments/assets/fba4c2a4-9fda-4336-9162-c20dc7ed8ee9)
+![2  Insertproduk](https://github.com/user-attachments/assets/23e4ace9-bedb-436b-95b9-c1e256d4b8b1)
 detail produk
 ![3  Detailproduk](https://github.com/user-attachments/assets/15043ee5-a97e-4f1a-a150-c94024061ea2)
 update produk
-![4  UpdateProduk](https://github.com/user-attachments/assets/d4cec6cb-10c3-4ee3-ad46-61ab4b7d8494)
+![4  UpdateProduk](https://github.com/user-attachments/assets/09c451a6-b2d9-4641-8054-74a7ad082fcf)
 home kategori
 ![5  HomeKategori](https://github.com/user-attachments/assets/ef0ce4a2-ea09-4240-aaea-e4b620c0dafa)
 detail kategori
